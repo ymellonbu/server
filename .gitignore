@@ -1,0 +1,69 @@
+local Window = Rayfield:CreateWindow({
+   Name = "아마도 서버테러 스크립트",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "로딩중...",
+   LoadingSubtitle = "by 배워테러단",
+   Theme = "DarkBlue", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   DisableRayfieldPrompts = true,
+   DisableBuildWarnings = true, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "아마도 서버테러 스크립트",
+      Subtitle = "https://pastebin.com/L70iL1FA 이 사이트로 오셈",
+      Note = "https://pastebin.com/L70iL1FA", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"https://pastebin.com/L70iL1FA"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+local MainTab = Window:CreateTab("메인 탭", nil) -- Title, Image
+local MainSection = Tab:CreateSection("메인")
+
+Rayfield:Notify({
+   Title = "스크립트 실행중",
+   Content = "배워 테러단 구독!!",
+   Duration = 5,
+   Image = nail,
+   Actions = { -- Notification Buttons
+        Ignore = {
+            Name = "알겠어요!",
+            Callback = funnction()
+            print("The user tapped Okay!")
+    },
+},
+})
+
+local Button = Tab:CreateButton({
+   Name = "어드민 스크립트",
+   Callback = function()
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+local Slider = MainTab:CreateSlider({
+   Name = "스",
+   Range = {0, 500},
+   Increment = 10,
+   Suffix = "speed",
+   CurrentValue = 16,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+       game.Players.LocalPlayer.Character.Humanid.WalkSpeed = (Value)
+   end,
+})
